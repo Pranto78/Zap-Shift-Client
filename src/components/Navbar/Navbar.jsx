@@ -6,19 +6,35 @@ import Logo from '../Logo/Logo';
 // Active link style function
 const getLinkStyle = ({ isActive }) => {
     return {
-        color: isActive ? '#2563eb' : '', // Blue color when active
-        borderBottom: isActive ? '2px solid #2563eb' : 'none', // Underline when active
-        paddingBottom: '2px'
+      color: isActive ? "#2563eb" : "", // Blue color when active
+      borderBottom: isActive ? "2px solid #2563eb" : "none", // Underline when active
+      paddingBottom: "2px",
+      backgroundColor: isActive ? "#CAEB66" : "transparent",
     };
 };
 
 const Navbar = () => {
 
 
-    const links = <>
-        <li><NavLink to="/" style={getLinkStyle}>Home</NavLink></li>
-        <li><NavLink to="/profile" style={getLinkStyle}>My Profile</NavLink></li>
-        </>
+    const links = (
+      <>
+        <li>
+          <NavLink className="font-bold" to="/" style={getLinkStyle}>
+            Home
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="font-bold" to="/profile" style={getLinkStyle}>
+            About
+          </NavLink>
+        </li>
+        <li>
+          <NavLink className="font-bold" to="/coverage" style={getLinkStyle}>
+            Coverage
+          </NavLink>
+        </li>
+      </>
+    );
     return (
       <div>
         <div className="navbar bg-base-100 shadow-sm rounded-3xl">
