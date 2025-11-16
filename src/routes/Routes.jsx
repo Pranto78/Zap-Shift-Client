@@ -1,9 +1,10 @@
 import React from 'react';
-import { createBrowserRouter } from "react-router-dom";
+// import { createBrowserRouter } from "react-router-dom";
 import Root from '../Root/Root';
 import Home from '../pages/Home/Home';
 import ErrorPage from '../pages/Error/ErrorPage';
 import Coverage from '../pages/Coverage/Coverage';
+import { createBrowserRouter } from 'react-router-dom';
 
 
 
@@ -19,8 +20,9 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path:'coverage',
-        Component:Coverage
+        path:'/coverage',
+        Component:Coverage,
+        loader:()=> fetch('/warehouses.json').then(res=>res.json())
       }
     ]
   },
