@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Home from '../../pages/Home/Home';
 import Logo from '../Logo/Logo';
+import UseAuthContext from '../../Hook/UseAuthContext';
 
 // Active link style function
 const getLinkStyle = ({ isActive }) => {
@@ -14,6 +15,16 @@ const getLinkStyle = ({ isActive }) => {
 };
 
 const Navbar = () => {
+
+      const { user, logOut } = UseAuthContext();
+
+      const handleLogOut = () => {
+        logOut()
+          .then()
+          .catch((error) => {
+            console.log(error);
+          });
+      };
 
 
     const links = (
@@ -29,10 +40,23 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
+          <NavLink className="font-bold" to="/send-parcel" style={getLinkStyle}>
+            Send Parcel
+          </NavLink>
+        </li>
+        <li>
           <NavLink className="font-bold" to="/coverage" style={getLinkStyle}>
             Coverage
           </NavLink>
         </li>
+
+        {user && (
+          <>
+            <li>
+              <NavLink to="/dashboard/my-parcels">My Parcels</NavLink>
+            </li>
+          </>
+        )}
       </>
     );
     return (
@@ -64,18 +88,31 @@ const Navbar = () => {
               <ul
                 tabIndex="-1"
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
-              >{links}
+              >
+                {links}
               </ul>
             </div>
-            <a className="btn btn-ghost text-xl"><Logo></Logo></a>
+            <a className="btn btn-ghost text-xl">
+              <Logo></Logo>
+            </a>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">
-              {links}
-            </ul>
+            <ul className="menu menu-horizontal px-1">{links}</ul>
           </div>
           <div className="navbar-end">
-            <NavLink to='/login' className="btn">Login</NavLink>
+            {user ? (
+              <a onClick={handleLogOut} className="btn">
+                Log Out
+              </a>
+            ) : (
+              <Link className="btn" to="/login">
+                Log in
+              </Link>
+            )}
+
+            <Link className="btn btn-primary text-black mx-4" to="/rider">
+              Be a Rider
+            </Link>
           </div>
         </div>
       </div>

@@ -8,6 +8,9 @@ import { createBrowserRouter } from 'react-router-dom';
 import Login from '../pages/Login/Login';
 import Registration from '../pages/Registration/Registration';
 import AuthLayOut from '../pages/AuthLayOut/AuthLayOut';
+import PrivateRoute from './PrivateRoute';
+import SendParcel from '../pages/SendParcel/SendParcel';
+import Rider from '../components/Rider/Rider';
 
 
 
@@ -27,6 +30,14 @@ export const router = createBrowserRouter([
         Component: Coverage,
         loader: () => fetch("/warehouses.json").then((res) => res.json()),
       },
+      {
+        path:"send-parcel",
+        element:<PrivateRoute><SendParcel></SendParcel></PrivateRoute>
+      },
+      {
+        path:"rider",
+        element:<PrivateRoute><Rider></Rider></PrivateRoute>
+      }
     ],
   },
   {
