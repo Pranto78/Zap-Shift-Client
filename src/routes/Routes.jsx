@@ -11,6 +11,8 @@ import AuthLayOut from '../pages/AuthLayOut/AuthLayOut';
 import PrivateRoute from './PrivateRoute';
 import SendParcel from '../pages/SendParcel/SendParcel';
 import Rider from '../components/Rider/Rider';
+import DashBoard from '../pages/DashBoard/DashBoard';
+import MyParcels from '../pages/MyParcels/MyParcels';
 
 
 
@@ -31,13 +33,22 @@ export const router = createBrowserRouter([
         loader: () => fetch("/warehouses.json").then((res) => res.json()),
       },
       {
-        path:"send-parcel",
-        element:<PrivateRoute><SendParcel></SendParcel></PrivateRoute>
+        path: "send-parcel",
+        element: (
+          <PrivateRoute>
+            <SendParcel></SendParcel>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/warehouses.json").then((res) => res.json()),
       },
       {
-        path:"rider",
-        element:<PrivateRoute><Rider></Rider></PrivateRoute>
-      }
+        path: "rider",
+        element: (
+          <PrivateRoute>
+            <Rider></Rider>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -55,4 +66,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path:'dashboard',
+    element:<PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
+    children:[
+      {
+        path:'my-parcels',
+        Component:MyParcels
+      }
+    ]
+  }
 ]);

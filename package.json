@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.16",
-    "@tanstack/react-query": "^5.90.7",
+    "@tanstack/react-query": "^5.90.10",
     "aos": "^2.3.4",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
@@ -32,6 +32,7 @@
     "react-router-dom": "^7.9.5",
     "react-toastify": "^11.0.5",
     "recharts": "^3.3.0",
+    "sweetalert2": "^11.26.3",
     "swiper": "^12.0.3",
     "tailwindcss": "^4.1.16",
     "zustand": "^5.0.8"
